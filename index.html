@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DVS-MAX - Contas Car Parking</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #FF2D75; /* Vibrant pink */
+            --secondary: #00E0FF; /* Cyan */
+            --dark: #0F0F1B; /* Dark blue */
+            --light: #F0F0FF; /* Light blue-white */
+            --accent: #FFD700; /* Gold for accents */
+            --success: #00CC88; /* Success green */
+        }
+        
+        /* Personalização da barra de rolagem */
+        ::-webkit-scrollbar {
+            width: 14px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: rgba(15, 15, 27, 0.8);
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, var(--primary), #FF5A8C);
+            border-radius: 7px;
+            border: 3px solid rgba(15, 15, 27, 0.8);
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(to bottom, #FF5A8C, var(--primary));
+            box-shadow: 0 0 10px rgba(255, 45, 117, 0.6);
+        }
+        
+        ::-webkit-scrollbar-corner {
+            background: rgba(15, 15, 27, 0.8);
+        }
+        
+        /* Para Firefox */
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary) rgba(15, 15, 27, 0.8);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            padding-bottom: 70px; /* Space for fixed nav */
+            overflow-x: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, rgba(15, 15, 27, 0.98) 0%, rgba(30, 30, 50, 0.98) 100%);
+            padding: 1rem 2rem;
+            text-align: center;
+            border-bottom: 2px solid var(--primary);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-shadow: 0 0 15px rgba(255, 45, 117, 0.6);
+            letter-spacing: 1px;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(15, 15, 27, 0.85), rgba(15, 15, 27, 0.92)), url('https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: calc(100vh - 70px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            text-shadow: 0 0 15px rgba(255, 45, 117, 0.5);
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+            color: rgba(240, 240, 255, 0.9);
+        }
+        
+        .highlight {
+            color: var(--secondary);
+            font-weight: 600;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            min-width: 200px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, #FF5A8C 100%);
+            color: white;
+            border: none;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(255, 45, 117, 0.4);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--secondary);
+            border: 2px solid var(--secondary);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--secondary);
+            color: var(--dark);
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(0, 224, 255, 0.4);
+        }
+        
+        .btn-accent {
+            background: transparent;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+        }
+        
+        .btn-accent:hover {
+            background: var(--accent);
+            color: var(--dark);
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(255, 215, 0, 0.4);
+        }
+        
+        .features {
+            padding: 5rem 2rem;
+            background: linear-gradient(180deg, var(--dark) 0%, #151528 100%);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            color: var(--primary);
+            text-shadow: 0 0 10px rgba(255, 45, 117, 0.5);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .feature-card {
+            background: linear-gradient(145deg, #151528, #1a1a2e);
+            border-radius: 15px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--secondary);
+            text-shadow: 0 0 15px rgba(0, 224, 255, 0.5);
+        }
+        
+        .feature-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .feature-description {
+            color: rgba(240, 240, 255, 0.8);
+            line-height: 1.6;
+        }
+        
+        /* Produtos Section */
+        .products {
+            padding: 5rem 2rem;
+            background: linear-gradient(180deg, #151528 0%, var(--dark) 100%);
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .product-card {
+            background: linear-gradient(145deg, #151528, #1a1a2e);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(255, 45, 117, 0.2);
+        }
+        
+        .product-header {
+            padding: 1.5rem;
+            text-align: center;
+            background: linear-gradient(90deg, var(--primary) 0%, #FF5A8C 100%);
+        }
+        
+        .product-title {
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+        
+        .product-price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+        
+        .product-body {
+            padding: 1.5rem;
+        }
+        
+        .product-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+        
+        .product-features li {
+            padding: 0.5rem 0;
+            color: rgba(240, 240, 255, 0.8);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .product-features i {
+            color: var(--secondary);
+        }
+        
+        .product-button {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--secondary) 0%, #00C2FF 100%);
+            color: var(--dark);
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .product-button:hover {
+            background: linear-gradient(135deg, #00C2FF 0%, var(--secondary) 100%);
+            box-shadow: 0 0 15px rgba(0, 224, 255, 0.5);
+        }
+        
+        /* Fixed bottom navigation */
+        nav {
+            background: linear-gradient(90deg, #151528 0%, #1a1a2e 100%);
+            padding: 1rem;
+            border-top: 2px solid var(--primary);
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            justify-content: space-around;
+            align-items: center;
+        }
+        
+        nav a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.3rem;
+            padding: 0.5rem;
+            border-radius: 10px;
+            min-width: 60px;
+        }
+        
+        nav a:hover, nav a.active {
+            color: var(--primary);
+            background: rgba(255, 45, 117, 0.1);
+        }
+        
+        nav i {
+            font-size: 1.3rem;
+        }
+        
+        nav span {
+            font-size: 0.8rem;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .btn {
+                padding: 0.8rem 1.5rem;
+                min-width: 180px;
+                font-size: 1rem;
+            }
+            
+            .cta-buttons {
+                gap: 1rem;
+            }
+            
+            .features, .products {
+                padding: 3rem 1.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .feature-card {
+                padding: 2rem 1.5rem;
+            }
+            
+            nav span {
+                display: none;
+            }
+            
+            nav a {
+                min-width: 50px;
+            }
+            
+            nav i {
+                font-size: 1.4rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            header {
+                padding: 1rem;
+            }
+            
+            .logo {
+                font-size: 2rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero {
+                padding: 1.5rem;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 280px;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                width: 100%;
+                align-items: center;
+            }
+            
+            .features-grid, .product-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            nav ul {
+                justify-content: space-between;
+            }
+        }
+        
+        /* High-resolution devices */
+        @media (min-width: 1400px) {
+            .hero-content {
+                max-width: 1000px;
+            }
+            
+            .hero h1 {
+                font-size: 4rem;
+            }
+            
+            .hero p {
+                font-size: 1.5rem;
+            }
+        }
+        
+        /* Tablet landscape */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .features-grid, .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        /* Reduced motion for accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">DVS-<span>MAX</span></div>
+    </header>
+    
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Compre contas de Car Parking Multiplayer com segurança!</h1>
+            <p>A <span class="highlight">melhor loja</span> para adquirir contas premium de Car Parking Multiplayer. Entrega automática, preços competitivos e <span class="highlight">total segurança</span> em todas as transações.</p>
+            <div class="cta-buttons">
+                <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i> Compre Agora</a>
+                <a href="#" class="btn btn-secondary"><i class="fas fa-question-circle"></i> Como Funciona?</a>
+                <a href="#" class="btn btn-accent"><i class="fas fa-headset"></i> Suporte</a>
+            </div>
+        </div>
+    </section>
+    
+    <section class="features">
+        <h2 class="section-title">Por que escolher a DVS-MAX?</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <h3 class="feature-title">Entrega Instantânea</h3>
+                <p class="feature-description">Suas contas são entregues em menos de 3 minutos após a confirmação do pagamento.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3 class="feature-title">Totalmente Seguro</h3>
+                <p class="feature-description">Transações criptografadas e protegidas. Seus dados estão sempre seguros conosco.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-tags"></i>
+                </div>
+                <h3 class="feature-title">Melhores Preços</h3>
+                <p class="feature-description">Oferecemos os preços mais competitivos do mercado com promoções exclusivas.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <h3 class="feature-title">Suporte 24/7</h3>
+                <p class="feature-description">Nossa equipe de suporte está disponível 24 horas por dia para ajudar você.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="products">
+        <h2 class="section-title">Contas Premium</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-header">
+                    <h3 class="product-title">Conta Iniciante</h3>
+                    <div class="product-price">R$ 19,99</div>
+                </div>
+                <div class="product-body">
+                    <ul class="product-features">
+                        <li><i class="fas fa-check-circle"></i> 5 carros exclusivos</li>
+                        <li><i class="fas fa-check-circle"></i> 50.000 créditos</li>
+                        <li><i class="fas fa-check-circle"></i> Garagem nível 2</li>
+                        <li><i class="fas fa-check-circle"></i> Entrega instantânea</li>
+                    </ul>
+                    <button class="product-button">Comprar Agora</button>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-header">
+                    <h3 class="product-title">Conta Intermediária</h3>
+                    <div class="product-price">R$ 49,99</div>
+                </div>
+                <div class="product-body">
+                    <ul class="product-features">
+                        <li><i class="fas fa-check-circle"></i> 15 carros exclusivos</li>
+                        <li><i class="fas fa-check-circle"></i> 200.000 créditos</li>
+                        <li><i class="fas fa-check-circle"></i> Garagem nível 4</li>
+                        <li><i class="fas fa-check-circle"></i> 10 skins raras</li>
+                        <li><i class="fas fa-check-circle"></i> Entrega instantânea</li>
+                    </ul>
+                    <button class="product-button">Comprar Agora</button>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-header">
+                    <h3 class="product-title">Conta Premium</h3>
+                    <div class="product-price">R$ 99,99</div>
+                </div>
+                <div class="product-body">
+                    <ul class="product-features">
+                        <li><i class="fas fa-check-circle"></i> 30+ carros exclusivos</li>
+                        <li><i class="fas fa-check-circle"></i> 1.000.000 créditos</li>
+                        <li><i class="fas fa-check-circle"></i> Garagem nível 6</li>
+                        <li><i class="fas fa-check-circle"></i> 25 skins raras</li>
+                        <li><i class="fas fa-check-circle"></i> Todos os mapas desbloqueados</li>
+                        <li><i class="fas fa-check-circle"></i> Entrega instantânea</li>
+                    </ul>
+                    <button class="product-button">Comprar Agora</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <nav>
+        <ul>
+            <li><a href="#" class="active"><i class="fas fa-home"></i> <span>Inicio</span></a></li>
+            <li><a href="#"><i class="fas fa-gamepad"></i> <span>Produtos</span></a></li>
+            <li><a href="#"><i class="fas fa-question-circle"></i> <span>Ajuda</span></a></li>
+            <li><a href="#"><i class="fas fa-user"></i> <span>Conta</span></a></li>
+            <li><a href="#"><i class="fas fa-headset"></i> <span>Suporte</span></a></li>
+        </ul>
+    </nav>
+
+    <script>
+        // Simple JavaScript for interactive elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Navigation active state
+            const navLinks = document.querySelectorAll('nav a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Animation on scroll
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe feature cards for animation
+            document.querySelectorAll('.feature-card, .product-card').forEach(card => {
+                card.style.opacity = 0;
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(card);
+            });
+            
+            // Product buttons effect
+            document.querySelectorAll('.product-button').forEach(button => {
+                button.addEventListener('click', function() {
+                    this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processando...';
+                    setTimeout(() => {
+                        this.innerHTML = '<i class="fas fa-check"></i> Adicionado ao Carrinho!';
+                        this.style.background = 'linear-gradient(135deg, var(--success) 0%, #00E6A8 100%)';
+                    }, 1000);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
