@@ -13,6 +13,9 @@
             --light: #F0F0FF; /* Light blue-white */
             --accent: #FFD700; /* Gold for accents */
             --success: #00CC88; /* Success green */
+            --whatsapp: #25D366;
+            --telegram: #0088CC;
+            --gmail: #EA4335;
         }
         
         /* Personalização da barra de rolagem */
@@ -81,10 +84,6 @@
             text-shadow: 0 0 15px rgba(255, 45, 117, 0.6);
             letter-spacing: 2px;
             text-transform: uppercase;
-        }
-        
-        .logo span {
-            color: var(--secondary);
         }
         
         .hero {
@@ -185,6 +184,22 @@
             color: var(--dark);
             transform: translateY(-3px);
             box-shadow: 0 7px 20px rgba(255, 215, 0, 0.4);
+        }
+        
+        .btn-more {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            margin: 2rem auto;
+            display: block;
+            max-width: 250px;
+        }
+        
+        .btn-more:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(255, 45, 117, 0.4);
         }
         
         .features {
@@ -327,6 +342,131 @@
             box-shadow: 0 0 15px rgba(0, 224, 255, 0.5);
         }
         
+        /* Suporte Section */
+        .support {
+            padding: 5rem 2rem;
+            background: linear-gradient(180deg, var(--dark) 0%, #0A0A14 100%);
+        }
+        
+        .support-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .support-card {
+            background: linear-gradient(145deg, #151528, #1a1a2e);
+            border-radius: 15px;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .support-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+        
+        .support-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+        
+        .whatsapp-icon {
+            background-color: var(--whatsapp);
+            color: white;
+            box-shadow: 0 0 20px rgba(37, 211, 102, 0.4);
+        }
+        
+        .telegram-icon {
+            background-color: var(--telegram);
+            color: white;
+            box-shadow: 0 0 20px rgba(0, 136, 204, 0.4);
+        }
+        
+        .gmail-icon {
+            background-color: var(--gmail);
+            color: white;
+            box-shadow: 0 0 20px rgba(234, 67, 53, 0.4);
+        }
+        
+        .support-title {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .support-description {
+            color: rgba(240, 240, 255, 0.8);
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            flex-grow: 1;
+        }
+        
+        .support-button {
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .whatsapp-button {
+            background: var(--whatsapp);
+            color: white;
+            border: none;
+        }
+        
+        .whatsapp-button:hover {
+            background: #128C7E;
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(37, 211, 102, 0.4);
+        }
+        
+        .telegram-button {
+            background: var(--telegram);
+            color: white;
+            border: none;
+        }
+        
+        .telegram-button:hover {
+            background: #006699;
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(0, 136, 204, 0.4);
+        }
+        
+        .gmail-button {
+            background: var(--gmail);
+            color: white;
+            border: none;
+        }
+        
+        .gmail-button:hover {
+            background: #D44638;
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(234, 67, 53, 0.4);
+        }
+        
         /* Fixed bottom navigation */
         nav {
             background: linear-gradient(90deg, #151528 0%, #1a1a2e 100%);
@@ -400,7 +540,7 @@
                 gap: 1rem;
             }
             
-            .features, .products {
+            .features, .products, .support {
                 padding: 3rem 1.5rem;
             }
             
@@ -408,8 +548,14 @@
                 font-size: 2rem;
             }
             
-            .feature-card {
+            .feature-card, .support-card {
                 padding: 2rem 1.5rem;
+            }
+            
+            .support-icon {
+                font-size: 3rem;
+                width: 80px;
+                height: 80px;
             }
             
             nav span {
@@ -453,7 +599,7 @@
                 align-items: center;
             }
             
-            .features-grid, .product-grid {
+            .features-grid, .product-grid, .support-grid {
                 grid-template-columns: 1fr;
             }
             
@@ -483,7 +629,7 @@
                 font-size: 3rem;
             }
             
-            .features-grid, .product-grid {
+            .features-grid, .product-grid, .support-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
@@ -508,9 +654,9 @@
             <h1>Compre contas de Car Parking Multiplayer com segurança!</h1>
             <p>A <span class="highlight">melhor loja</span> para adquirir contas premium de Car Parking Multiplayer. Entrega automática, preços competitivos e <span class="highlight">total segurança</span> em todas as transações.</p>
             <div class="cta-buttons">
-                <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i> Compre Agora</a>
+                <a href="#products" class="btn btn-primary"><i class="fas fa-shopping-cart"></i> Compre Agora</a>
                 <a href="#" class="btn btn-secondary"><i class="fas fa-question-circle"></i> Como Funciona?</a>
-                <a href="#" class="btn btn-accent"><i class="fas fa-headset"></i> Suporte</a>
+                <a href="#support" class="btn btn-accent"><i class="fas fa-headset"></i> Suporte</a>
             </div>
         </div>
     </section>
@@ -552,7 +698,7 @@
         </div>
     </section>
     
-    <section class="products">
+    <section class="products" id="products">
         <h2 class="section-title">Contas Premium</h2>
         <div class="product-grid">
             <div class="product-card">
@@ -606,15 +752,54 @@
                 </div>
             </div>
         </div>
+        
+        <a href="#" class="btn btn-more"><i class="fas fa-eye"></i> Ver Mais Produtos</a>
+    </section>
+    
+    <section class="support" id="support">
+        <h2 class="section-title">Suporte Zentax</h2>
+        <div class="support-grid">
+            <div class="support-card">
+                <div class="support-icon whatsapp-icon">
+                    <i class="fab fa-whatsapp"></i>
+                </div>
+                <h3 class="support-title">WhatsApp</h3>
+                <p class="support-description">Suporte rápido e direto pelo WhatsApp. Respondemos em até 5 minutos durante o horário comercial.</p>
+                <a href="https://wa.me/5511999999999" class="support-button whatsapp-button">
+                    <i class="fab fa-whatsapp"></i> Iniciar Conversa
+                </a>
+            </div>
+            
+            <div class="support-card">
+                <div class="support-icon telegram-icon">
+                    <i class="fab fa-telegram"></i>
+                </div>
+                <h3 class="support-title">Telegram</h3>
+                <p class="support-description">Entre em nosso canal do Telegram para suporte e acompanhe as novidades e promoções.</p>
+                <a href="https://t.me/zentax_suporte" class="support-button telegram-button">
+                    <i class="fab fa-telegram"></i> Entrar no Canal
+                </a>
+            </div>
+            
+            <div class="support-card">
+                <div class="support-icon gmail-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <h3 class="support-title">E-mail</h3>
+                <p class="support-description">Envie-nos um e-mail para questões mais detalhadas. Respondemos em até 24 horas.</p>
+                <a href="mailto:suporte@zentax.com.br" class="support-button gmail-button">
+                    <i class="fas fa-envelope"></i> Enviar E-mail
+                </a>
+            </div>
+        </div>
     </section>
     
     <nav>
         <ul>
             <li><a href="#" class="active"><i class="fas fa-home"></i> <span>Inicio</span></a></li>
-            <li><a href="#"><i class="fas fa-gamepad"></i> <span>Produtos</span></a></li>
+            <li><a href="#products" class="nav-products"><i class="fas fa-gamepad"></i> <span>Produtos</span></a></li>
             <li><a href="#"><i class="fas fa-question-circle"></i> <span>Ajuda</span></a></li>
-            <li><a href="#"><i class="fas fa-user"></i> <span>Conta</span></a></li>
-            <li><a href="#"><i class="fas fa-headset"></i> <span>Suporte</span></a></li>
+            <li><a href="#support" class="nav-support"><i class="fas fa-headset"></i> <span>Suporte</span></a></li>
         </ul>
     </nav>
 
@@ -664,7 +849,7 @@
             }, observerOptions);
             
             // Observe feature cards for animation
-            document.querySelectorAll('.feature-card, .product-card').forEach(card => {
+            document.querySelectorAll('.feature-card, .product-card, .support-card').forEach(card => {
                 card.style.opacity = 0;
                 card.style.transform = 'translateY(20px)';
                 card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
@@ -680,6 +865,30 @@
                         this.style.background = 'linear-gradient(135deg, var(--success) 0%, #00E6A8 100%)';
                     }, 1000);
                 });
+            });
+            
+            // Add specific event listener for products navigation
+            document.querySelector('a[href="#products"]').addEventListener('click', function(e) {
+                e.preventDefault();
+                const productsSection = document.getElementById('products');
+                if (productsSection) {
+                    window.scrollTo({
+                        top: productsSection.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+            
+            // Add specific event listener for support navigation
+            document.querySelector('a[href="#support"]').addEventListener('click', function(e) {
+                e.preventDefault();
+                const supportSection = document.getElementById('support');
+                if (supportSection) {
+                    window.scrollTo({
+                        top: supportSection.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
             });
         });
     </script>
