@@ -1,896 +1,938 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zentax - Contas Car Parking</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>MULTILYNE - MTL</title>
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
     <style>
         :root {
-            --primary: #FF2D75; /* Vibrant pink */
-            --secondary: #00E0FF; /* Cyan */
-            --dark: #0F0F1B; /* Dark blue */
-            --light: #F0F0FF; /* Light blue-white */
-            --accent: #FFD700; /* Gold for accents */
-            --success: #00CC88; /* Success green */
-            --whatsapp: #25D366;
-            --telegram: #0088CC;
-            --gmail: #EA4335;
+            --primary: #b5b5b5;
+            --secondary: #d9d9d9;
+            --dark: #111111;
+            --light: #f5f5f5;
+            --accent: #7a7a7a;
+            --card: #1b1b1b;
+            --border: rgba(255, 255, 255, 0.06);
         }
-        
-        /* Personalização da barra de rolagem */
-        ::-webkit-scrollbar {
-            width: 14px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: rgba(15, 15, 27, 0.8);
-            border-left: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(to bottom, var(--primary), #FF5A8C);
-            border-radius: 7px;
-            border: 3px solid rgba(15, 15, 27, 0.8);
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(to bottom, #FF5A8C, var(--primary));
-            box-shadow: 0 0 10px rgba(255, 45, 117, 0.6);
-        }
-        
-        ::-webkit-scrollbar-corner {
-            background: rgba(15, 15, 27, 0.8);
-        }
-        
-        /* Para Firefox */
-        * {
-            scrollbar-width: thin;
-            scrollbar-color: var(--primary) rgba(15, 15, 27, 0.8);
-        }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: "Poppins", sans-serif;
+            scroll-behavior: smooth;
         }
-        
+
         body {
-            background-color: var(--dark);
+            background: var(--dark);
             color: var(--light);
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            padding-bottom: 70px; /* Space for fixed nav */
             overflow-x: hidden;
+            padding-bottom: 90px;
         }
-        
+
+        /* SCROLL */
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #151515;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 20px;
+        }
+
+        /* HEADER */
+
         header {
-            background: linear-gradient(135deg, rgba(15, 15, 27, 0.98) 0%, rgba(30, 30, 50, 0.98) 100%);
-            padding: 1rem 2rem;
-            text-align: center;
-            border-bottom: 2px solid var(--primary);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            position: sticky;
+            position: fixed;
             top: 0;
-            z-index: 100;
+            width: 100%;
+            z-index: 999;
+            background: rgba(17, 17, 17, 0.92);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
         }
-        
+
+        .header-container {
+            max-width: 1300px;
+            margin: auto;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
         .logo {
-            font-size: 2.8rem;
+            font-size: 2rem;
             font-weight: 800;
-            color: var(--primary);
-            text-shadow: 0 0 15px rgba(255, 45, 117, 0.6);
-            letter-spacing: 2px;
-            text-transform: uppercase;
+            color: var(--light);
+            letter-spacing: 3px;
         }
-        
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .desktop-nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        .desktop-nav a {
+            color: #d0d0d0;
+            text-decoration: none;
+            transition: .3s;
+            font-weight: 500;
+        }
+
+        .desktop-nav a:hover {
+            color: white;
+        }
+
+        /* HERO */
+
         .hero {
-            background: linear-gradient(rgba(15, 15, 27, 0.85), rgba(15, 15, 27, 0.92)), url('https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 20px 60px;
+
+            background:
+                linear-gradient(rgba(17, 17, 17, 0.82),
+                    rgba(17, 17, 17, 0.92)),
+                url("https://images.unsplash.com/photo-1523398002811-999ca8dec234?q=80&w=1470&auto=format&fit=crop");
+
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
-            min-height: calc(100vh - 70px);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 2rem;
         }
-        
+
         .hero-content {
-            max-width: 800px;
-            animation: fadeIn 1s ease-out;
+            max-width: 850px;
+            text-align: center;
+            animation: fadeIn 1s ease;
         }
-        
+
         .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            color: var(--primary);
-            text-shadow: 0 0 15px rgba(255, 45, 117, 0.5);
-            line-height: 1.2;
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 25px;
         }
-        
+
         .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2.5rem;
-            line-height: 1.6;
-            color: rgba(240, 240, 255, 0.9);
+            font-size: 1.2rem;
+            color: #d2d2d2;
+            line-height: 1.8;
+            margin-bottom: 40px;
         }
-        
+
         .highlight {
-            color: var(--secondary);
-            font-weight: 600;
+            color: var(--primary);
+            font-weight: 700;
         }
-        
+
         .cta-buttons {
             display: flex;
-            gap: 1.5rem;
-            flex-wrap: wrap;
             justify-content: center;
-            margin-top: 2rem;
+            gap: 20px;
+            flex-wrap: wrap;
         }
-        
+
         .btn {
-            padding: 1rem 2rem;
+            padding: 15px 28px;
             border-radius: 50px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
             text-decoration: none;
+            font-weight: 600;
+            transition: .3s;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 0.5rem;
-            font-size: 1.1rem;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            min-width: 200px;
+            gap: 10px;
+            min-width: 220px;
         }
-        
+
         .btn-primary {
-            background: linear-gradient(135deg, var(--primary) 0%, #FF5A8C 100%);
-            color: white;
-            border: none;
+            background: var(--primary);
+            color: var(--dark);
         }
-        
+
         .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 7px 20px rgba(255, 45, 117, 0.4);
+            transform: translateY(-5px);
+            background: white;
         }
-        
+
         .btn-secondary {
-            background: transparent;
-            color: var(--secondary);
             border: 2px solid var(--secondary);
+            color: var(--secondary);
         }
-        
+
         .btn-secondary:hover {
             background: var(--secondary);
             color: var(--dark);
-            transform: translateY(-3px);
-            box-shadow: 0 7px 20px rgba(0, 224, 255, 0.4);
+            transform: translateY(-5px);
         }
-        
+
         .btn-accent {
-            background: transparent;
-            color: var(--accent);
             border: 2px solid var(--accent);
+            color: var(--accent);
         }
-        
+
         .btn-accent:hover {
             background: var(--accent);
-            color: var(--dark);
-            transform: translateY(-3px);
-            box-shadow: 0 7px 20px rgba(255, 215, 0, 0.4);
-        }
-        
-        .btn-more {
-            background: transparent;
-            color: var(--primary);
-            border: 2px solid var(--primary);
-            margin: 2rem auto;
-            display: block;
-            max-width: 250px;
-        }
-        
-        .btn-more:hover {
-            background: var(--primary);
             color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 7px 20px rgba(255, 45, 117, 0.4);
+            transform: translateY(-5px);
         }
-        
-        .features {
-            padding: 5rem 2rem;
-            background: linear-gradient(180deg, var(--dark) 0%, #151528 100%);
+
+        /* SECTIONS */
+
+        section {
+            padding: 100px 20px;
         }
-        
+
         .section-title {
             text-align: center;
-            margin-bottom: 3rem;
-            font-size: 2.5rem;
-            color: var(--primary);
-            text-shadow: 0 0 10px rgba(255, 45, 117, 0.5);
+            font-size: 2.8rem;
+            margin-bottom: 70px;
         }
-        
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .feature-card {
-            background: linear-gradient(145deg, #151528, #1a1a2e);
-            border-radius: 15px;
-            padding: 2.5rem 2rem;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-        }
-        
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            color: var(--secondary);
-            text-shadow: 0 0 15px rgba(0, 224, 255, 0.5);
-        }
-        
-        .feature-title {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--primary);
-        }
-        
-        .feature-description {
-            color: rgba(240, 240, 255, 0.8);
-            line-height: 1.6;
-        }
-        
-        /* Produtos Section */
-        .products {
-            padding: 5rem 2rem;
-            background: linear-gradient(180deg, #151528 0%, var(--dark) 100%);
-        }
-        
-        .product-grid {
+
+        /* FEATURES */
+
+        .features-grid,
+        .products-grid,
+        .support-grid {
+            max-width: 1250px;
+            margin: auto;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
+            gap: 30px;
         }
-        
-        .product-card {
-            background: linear-gradient(145deg, #151528, #1a1a2e);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 25px;
+            padding: 35px;
+            transition: .4s;
         }
-        
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(255, 45, 117, 0.2);
-        }
-        
-        .product-header {
-            padding: 1.5rem;
-            text-align: center;
-            background: linear-gradient(90deg, var(--primary) 0%, #FF5A8C 100%);
-        }
-        
-        .product-title {
-            font-size: 1.5rem;
-            color: white;
-            margin-bottom: 0.5rem;
-        }
-        
-        .product-price {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--accent);
-        }
-        
-        .product-body {
-            padding: 1.5rem;
-        }
-        
-        .product-features {
-            list-style: none;
-            margin-bottom: 1.5rem;
-        }
-        
-        .product-features li {
-            padding: 0.5rem 0;
-            color: rgba(240, 240, 255, 0.8);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .product-features i {
-            color: var(--secondary);
-        }
-        
-        .product-button {
-            display: block;
-            width: 100%;
-            padding: 1rem;
-            background: linear-gradient(135deg, var(--secondary) 0%, #00C2FF 100%);
-            color: var(--dark);
-            border: none;
-            border-radius: 8px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-        
-        .product-button:hover {
-            background: linear-gradient(135deg, #00C2FF 0%, var(--secondary) 100%);
-            box-shadow: 0 0 15px rgba(0, 224, 255, 0.5);
-        }
-        
-        /* Suporte Section */
-        .support {
-            padding: 5rem 2rem;
-            background: linear-gradient(180deg, var(--dark) 0%, #0A0A14 100%);
-        }
-        
-        .support-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .support-card {
-            background: linear-gradient(145deg, #151528, #1a1a2e);
-            border-radius: 15px;
-            padding: 3rem 2rem;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        
-        .support-card:hover {
+
+        .card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 255, 255, 0.15);
         }
-        
+
+        .feature-icon,
         .support-icon {
-            font-size: 4rem;
-            margin-bottom: 1.5rem;
-            width: 100px;
-            height: 100px;
+            width: 90px;
+            height: 90px;
+            margin: auto auto 25px;
             border-radius: 50%;
+            background: #252525;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 2rem;
-        }
-        
-        .whatsapp-icon {
-            background-color: var(--whatsapp);
-            color: white;
-            box-shadow: 0 0 20px rgba(37, 211, 102, 0.4);
-        }
-        
-        .telegram-icon {
-            background-color: var(--telegram);
-            color: white;
-            box-shadow: 0 0 20px rgba(0, 136, 204, 0.4);
-        }
-        
-        .gmail-icon {
-            background-color: var(--gmail);
-            color: white;
-            box-shadow: 0 0 20px rgba(234, 67, 53, 0.4);
-        }
-        
-        .support-title {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
+            font-size: 2.2rem;
             color: var(--primary);
         }
-        
+
+        .feature-title,
+        .product-title,
+        .support-title {
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .feature-description,
         .support-description {
-            color: rgba(240, 240, 255, 0.8);
-            line-height: 1.6;
-            margin-bottom: 2rem;
-            flex-grow: 1;
+            text-align: center;
+            color: #cccccc;
+            line-height: 1.8;
         }
-        
-        .support-button {
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-flex;
+
+        /* PRODUCTS */
+
+        .product-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .product-price {
+            color: var(--primary);
+            font-size: 2rem;
+            font-weight: 700;
+            margin-top: 10px;
+        }
+
+        .product-features {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .product-features li {
+            display: flex;
             align-items: center;
-            gap: 0.5rem;
-            font-size: 1.1rem;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            gap: 10px;
+            padding: 10px 0;
+            color: #d0d0d0;
         }
-        
-        .whatsapp-button {
-            background: var(--whatsapp);
-            color: white;
+
+        .product-features i {
+            color: var(--primary);
+        }
+
+        .product-button {
+            width: 100%;
             border: none;
+            padding: 15px;
+            border-radius: 14px;
+            background: var(--primary);
+            color: var(--dark);
+            font-weight: 700;
+            cursor: pointer;
+            transition: .3s;
         }
-        
-        .whatsapp-button:hover {
-            background: #128C7E;
-            transform: translateY(-3px);
-            box-shadow: 0 7px 20px rgba(37, 211, 102, 0.4);
+
+        .product-button:hover {
+            background: white;
         }
-        
-        .telegram-button {
-            background: var(--telegram);
+
+        .btn-more {
+            margin: 50px auto 0;
+            width: fit-content;
+            display: flex;
+        }
+
+        /* SUPPORT */
+
+        .support-button {
+            width: 100%;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 25px;
+            padding: 14px;
+            border-radius: 14px;
+            background: #2c2c2c;
             color: white;
-            border: none;
+            text-decoration: none;
+            transition: .3s;
         }
-        
-        .telegram-button:hover {
-            background: #006699;
-            transform: translateY(-3px);
-            box-shadow: 0 7px 20px rgba(0, 136, 204, 0.4);
+
+        .support-button:hover {
+            background: #444;
         }
-        
-        .gmail-button {
-            background: var(--gmail);
-            color: white;
-            border: none;
-        }
-        
-        .gmail-button:hover {
-            background: #D44638;
-            transform: translateY(-3px);
-            box-shadow: 0 7px 20px rgba(234, 67, 53, 0.4);
-        }
-        
-        /* Fixed bottom navigation */
+
+        /* FOOTER NAV */
+
         nav {
-            background: linear-gradient(90deg, #151528 0%, #1a1a2e 100%);
-            padding: 1rem;
-            border-top: 2px solid var(--primary);
             position: fixed;
             bottom: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            z-index: 999;
+            background: rgba(17, 17, 17, 0.95);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid var(--border);
         }
-        
+
         nav ul {
-            display: flex;
             list-style: none;
+            display: flex;
             justify-content: space-around;
-            align-items: center;
+            padding: 15px;
         }
-        
+
         nav a {
-            color: var(--light);
+            color: #d0d0d0;
             text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 0.3rem;
-            padding: 0.5rem;
-            border-radius: 10px;
-            min-width: 60px;
+            gap: 5px;
+            transition: .3s;
+            font-size: .9rem;
         }
-        
-        nav a:hover, nav a.active {
-            color: var(--primary);
-            background: rgba(255, 45, 117, 0.1);
+
+        nav a:hover,
+        nav a.active {
+            color: white;
         }
-        
+
         nav i {
             font-size: 1.3rem;
         }
-        
-        nav span {
-            font-size: 0.8rem;
-        }
-        
-        /* Animations */
+
+        /* ANIMATION */
+
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        
-        /* Responsive Design */
-        @media (max-width: 768px) {
+
+        /* RESPONSIVE */
+
+        @media(max-width: 900px) {
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 3rem;
             }
-            
+        }
+
+        @media(max-width: 700px) {
+
+            .desktop-nav {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+
             .hero p {
-                font-size: 1.1rem;
-            }
-            
-            .btn {
-                padding: 0.8rem 1.5rem;
-                min-width: 180px;
                 font-size: 1rem;
             }
-            
-            .cta-buttons {
-                gap: 1rem;
+
+            .btn {
+                width: 100%;
             }
-            
-            .features, .products, .support {
-                padding: 3rem 1.5rem;
-            }
-            
+
             .section-title {
                 font-size: 2rem;
             }
-            
-            .feature-card, .support-card {
-                padding: 2rem 1.5rem;
-            }
-            
-            .support-icon {
-                font-size: 3rem;
-                width: 80px;
-                height: 80px;
-            }
-            
+
             nav span {
                 display: none;
-            }
-            
-            nav a {
-                min-width: 50px;
-            }
-            
-            nav i {
-                font-size: 1.4rem;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            header {
-                padding: 1rem;
-            }
-            
-            .logo {
-                font-size: 2rem;
-            }
-            
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .hero {
-                padding: 1.5rem;
-            }
-            
-            .btn {
-                width: 100%;
-                max-width: 280px;
-            }
-            
-            .cta-buttons {
-                flex-direction: column;
-                width: 100%;
-                align-items: center;
-            }
-            
-            .features-grid, .product-grid, .support-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            nav ul {
-                justify-content: space-between;
-            }
-        }
-        
-        /* High-resolution devices */
-        @media (min-width: 1400px) {
-            .hero-content {
-                max-width: 1000px;
-            }
-            
-            .hero h1 {
-                font-size: 4rem;
-            }
-            
-            .hero p {
-                font-size: 1.5rem;
-            }
-        }
-        
-        /* Tablet landscape */
-        @media (min-width: 769px) and (max-width: 1024px) {
-            .hero h1 {
-                font-size: 3rem;
-            }
-            
-            .features-grid, .product-grid, .support-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        
-        /* Reduced motion for accessibility */
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
             }
         }
     </style>
 </head>
+
 <body>
+
+    <!-- HEADER -->
+
     <header>
-        <div class="logo">ZENTAX</div>
-    </header>
-    
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Compre contas de Car Parking Multiplayer com segurança!</h1>
-            <p>A <span class="highlight">melhor loja</span> para adquirir contas premium de Car Parking Multiplayer. Entrega automática, preços competitivos e <span class="highlight">total segurança</span> em todas as transações.</p>
-            <div class="cta-buttons">
-                <a href="#products" class="btn btn-primary"><i class="fas fa-shopping-cart"></i> Compre Agora</a>
-                <a href="#" class="btn btn-secondary"><i class="fas fa-question-circle"></i> Como Funciona?</a>
-                <a href="#support" class="btn btn-accent"><i class="fas fa-headset"></i> Suporte</a>
+
+        <div class="header-container">
+
+            <div class="logo">
+                MULTILYNE <span>MTL</span>
             </div>
+
+            <div class="desktop-nav">
+
+                <a href="#">Início</a>
+                <a href="#products">Coleção</a>
+                <a href="#support">Suporte</a>
+
+            </div>
+
         </div>
+
+    </header>
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <h1>
+                Moda urbana premium para quem vive o estilo.
+            </h1>
+
+            <p>
+                A <span class="highlight">MULTILYNE - MTL</span>
+                traz roupas exclusivas, peças streetwear e coleções modernas
+                para elevar seu visual.
+                Qualidade premium, estilo autêntico e
+                <span class="highlight">
+                    atitude em cada detalhe.
+                </span>
+            </p>
+
+            <div class="cta-buttons">
+
+                <a href="#products" class="btn btn-primary">
+                    <i class="fas fa-bag-shopping"></i>
+                    Comprar Agora
+                </a>
+
+                <a href="#products" class="btn btn-secondary">
+                    <i class="fas fa-shirt"></i>
+                    Coleções
+                </a>
+
+                <a href="#support" class="btn btn-accent">
+                    <i class="fas fa-headset"></i>
+                    Suporte
+                </a>
+
+            </div>
+
+        </div>
+
     </section>
-    
+
+    <!-- FEATURES -->
+
     <section class="features">
-        <h2 class="section-title">Por que escolher a Zentax?</h2>
+
+        <h2 class="section-title">
+            Por que escolher a MULTILYNE?
+        </h2>
+
         <div class="features-grid">
-            <div class="feature-card">
+
+            <div class="card">
+
                 <div class="feature-icon">
-                    <i class="fas fa-bolt"></i>
+                    <i class="fas fa-fire"></i>
                 </div>
-                <h3 class="feature-title">Entrega Instantânea</h3>
-                <p class="feature-description">Suas contas são entregues em menos de 3 minutos após a confirmação do pagamento.</p>
+
+                <h3 class="feature-title">
+                    Estilo Exclusivo
+                </h3>
+
+                <p class="feature-description">
+                    Peças modernas e autênticas para destacar seu visual
+                    em qualquer ocasião.
+                </p>
+
             </div>
-            
-            <div class="feature-card">
+
+            <div class="card">
+
                 <div class="feature-icon">
-                    <i class="fas fa-shield-alt"></i>
+                    <i class="fas fa-gem"></i>
                 </div>
-                <h3 class="feature-title">Totalmente Seguro</h3>
-                <p class="feature-description">Transações criptografadas e protegidas. Seus dados estão sempre seguros conosco.</p>
+
+                <h3 class="feature-title">
+                    Qualidade Premium
+                </h3>
+
+                <p class="feature-description">
+                    Tecidos selecionados e acabamento impecável
+                    em todas as peças.
+                </p>
+
             </div>
-            
-            <div class="feature-card">
+
+            <div class="card">
+
                 <div class="feature-icon">
-                    <i class="fas fa-tags"></i>
+                    <i class="fas fa-truck-fast"></i>
                 </div>
-                <h3 class="feature-title">Melhores Preços</h3>
-                <p class="feature-description">Oferecemos os preços mais competitivos do mercado com promoções exclusivas.</p>
+
+                <h3 class="feature-title">
+                    Entrega Rápida
+                </h3>
+
+                <p class="feature-description">
+                    Enviamos para todo o Brasil com rapidez e segurança.
+                </p>
+
             </div>
-            
-            <div class="feature-card">
+
+            <div class="card">
+
                 <div class="feature-icon">
                     <i class="fas fa-headset"></i>
                 </div>
-                <h3 class="feature-title">Suporte 24/7</h3>
-                <p class="feature-description">Nossa equipe de suporte está disponível 24 horas por dia para ajudar você.</p>
+
+                <h3 class="feature-title">
+                    Suporte Especializado
+                </h3>
+
+                <p class="feature-description">
+                    Nossa equipe está pronta para ajudar você antes
+                    e depois da compra.
+                </p>
+
             </div>
+
         </div>
+
     </section>
-    
+
+    <!-- PRODUCTS -->
+
     <section class="products" id="products">
-        <h2 class="section-title">Contas Premium</h2>
-        <div class="product-grid">
-            <div class="product-card">
+
+        <h2 class="section-title">
+            Coleção MTL
+        </h2>
+
+        <div class="products-grid">
+
+            <!-- PRODUCT 1 -->
+
+            <div class="card">
+
                 <div class="product-header">
-                    <h3 class="product-title">Conta Iniciante</h3>
-                    <div class="product-price">R$ 19,99</div>
+
+                    <h3 class="product-title">
+                        Camiseta Oversized
+                    </h3>
+
+                    <div class="product-price">
+                        R$ 79,90
+                    </div>
+
                 </div>
-                <div class="product-body">
-                    <ul class="product-features">
-                        <li><i class="fas fa-check-circle"></i> 5 carros exclusivos</li>
-                        <li><i class="fas fa-check-circle"></i> 50.000 créditos</li>
-                        <li><i class="fas fa-check-circle"></i> Garagem nível 2</li>
-                        <li><i class="fas fa-check-circle"></i> Entrega instantânea</li>
-                    </ul>
-                    <button class="product-button">Comprar Agora</button>
-                </div>
+
+                <ul class="product-features">
+
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        Tecido premium
+                    </li>
+
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        Modelagem oversized
+                    </li>
+
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        Estampa exclusiva
+                    </li>
+
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        Frete rápido
+                    </li>
+
+                </ul>
+
+                <button class="product-button">
+                    Comprar Agora
+                </button>
+
             </div>
-            
-            <div class="product-card">
+
+            <!-- PRODUCT 2 -->
+
+            <div class="card">
+
                 <div class="product-header">
-                    <h3 class="product-title">Conta Intermediária</h3>
-                    <div class="product-price">R$ 49,99</div>
+
+                    <h3 class="product-title">
+                        Moletom MTL
+                    </h3>
+
+                    <div class="product-price">
+                        R$ 149,90
+                    </div>
+
                 </div>
-                <div class="product-body">
-                    <ul class="product-features">
-                        <li><i class="fas fa-check-circle"></i> 15 carros exclusivos</li>
-                        <li><i class="fas fa-check-circle"></i> 200.000 créditos</li>
-                        <li><i class="fas fa-check-circle"></i> Garagem nível 4</li>
-                        <li><i class="fas fa-check-circle"></i> 10 skins raras</li>
-                        <li><i class="fas fa-check-circle"></i> Entrega instantânea</li>
-                    </ul>
-                    <button class="product-button">Comprar Agora</button>
-                </div>
+
+                <ul class="product-features">
+
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        Interior flanelado
+                    </li>
+
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        Alta durabilidade
+                    </li>
+
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        Design minimalista
+                    </li>
+
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        Conforto premium
+                    </li>
+
+                </ul>
+
+                <button class="product-button">
+                    Comprar Agora
+                </button>
+
             </div>
-            
-            <div class="product-card">
+
+            <!-- PRODUCT 3 -->
+
+            <div class="card">
+
                 <div class="product-header">
-                    <h3 class="product-title">Conta Premium</h3>
-                    <div class="product-price">R$ 99,99</div>
+
+                    <h3 class="product-title">
+                        Calça Cargo Street
+                    </h3>
+
+                    <div class="product-price">
+                        R$ 189,90
+                    </div>
+
                 </div>
-                <div class="product-body">
-                    <ul class="product-features">
-                        <li><i class="fas fa-check-circle"></i> 30+ carros exclusivos</li>
-                        <li><i class="fas fa-check-circle"></i> 1.000.000 créditos</li>
-                        <li><i class="fas fa-check-circle"></i> Garagem nível 6</li>
-                        <li><i class="fas fa-check-circle"></i> 25 skins raras</li>
-                        <li><i class="fas fa-check-circle"></i> Todos os mapas desbloqueados</li>
-                        <li><i class="fas fa-check-circle"></i> Entrega instantânea</li>
-                    </ul>
-                    <button class="product-button">Comprar Agora</button>
-                </div>
+
+                <ul class="product-features">
+
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        Estilo urbano
+                    </li>
+
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        Bolsos utilitários
+                    </li>
+
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        Ajuste confortável
+                    </li>
+
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        Material resistente
+                    </li>
+
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        Coleção exclusiva MTL
+                    </li>
+
+                </ul>
+
+                <button class="product-button">
+                    Comprar Agora
+                </button>
+
             </div>
+
         </div>
-        
-        <a href="#" class="btn btn-more"><i class="fas fa-eye"></i> Ver Mais Produtos</a>
+
+        <a href="#" class="btn btn-secondary btn-more">
+
+            <i class="fas fa-eye"></i>
+            Ver Coleção Completa
+
+        </a>
+
     </section>
-    
+
+    <!-- SUPPORT -->
+
     <section class="support" id="support">
-        <h2 class="section-title">Suporte Zentax</h2>
+
+        <h2 class="section-title">
+            Suporte MULTILYNE
+        </h2>
+
         <div class="support-grid">
-            <div class="support-card">
-                <div class="support-icon whatsapp-icon">
+
+            <div class="card">
+
+                <div class="support-icon">
                     <i class="fab fa-whatsapp"></i>
                 </div>
-                <h3 class="support-title">WhatsApp</h3>
-                <p class="support-description">Suporte rápido e direto pelo WhatsApp. Respondemos em até 5 minutos durante o horário comercial.</p>
-                <a href="https://wa.me/5511999999999" class="support-button whatsapp-button">
-                    <i class="fab fa-whatsapp"></i> Iniciar Conversa
+
+                <h3 class="support-title">
+                    WhatsApp
+                </h3>
+
+                <p class="support-description">
+                    Atendimento rápido para dúvidas,
+                    pedidos e suporte pós-venda.
+                </p>
+
+                <a href="https://wa.me/5511999999999"
+                    class="support-button">
+
+                    <i class="fab fa-whatsapp"></i>
+                    Conversar
+
                 </a>
+
             </div>
-            
-            <div class="support-card">
-                <div class="support-icon telegram-icon">
-                    <i class="fab fa-telegram"></i>
+
+            <div class="card">
+
+                <div class="support-icon">
+                    <i class="fab fa-instagram"></i>
                 </div>
-                <h3 class="support-title">Telegram</h3>
-                <p class="support-description">Entre em nosso canal do Telegram para suporte e acompanhe as novidades e promoções.</p>
-                <a href="https://t.me/zentax_suporte" class="support-button telegram-button">
-                    <i class="fab fa-telegram"></i> Entrar no Canal
+
+                <h3 class="support-title">
+                    Instagram
+                </h3>
+
+                <p class="support-description">
+                    Acompanhe lançamentos,
+                    novidades e tendências da MTL.
+                </p>
+
+                <a href="#"
+                    class="support-button">
+
+                    <i class="fab fa-instagram"></i>
+                    Seguir
+
                 </a>
+
             </div>
-            
-            <div class="support-card">
-                <div class="support-icon gmail-icon">
+
+            <div class="card">
+
+                <div class="support-icon">
                     <i class="fas fa-envelope"></i>
                 </div>
-                <h3 class="support-title">E-mail</h3>
-                <p class="support-description">Envie-nos um e-mail para questões mais detalhadas. Respondemos em até 24 horas.</p>
-                <a href="mailto:suporte@zentax.com.br" class="support-button gmail-button">
-                    <i class="fas fa-envelope"></i> Enviar E-mail
+
+                <h3 class="support-title">
+                    E-mail
+                </h3>
+
+                <p class="support-description">
+                    Entre em contato para suporte,
+                    parcerias e atendimento especializado.
+                </p>
+
+                <a href="mailto:contato@multilyne.com"
+                    class="support-button">
+
+                    <i class="fas fa-envelope"></i>
+                    Enviar E-mail
+
                 </a>
+
             </div>
+
         </div>
+
     </section>
-    
+
+    <!-- MOBILE NAV -->
+
     <nav>
+
         <ul>
-            <li><a href="#" class="active"><i class="fas fa-home"></i> <span>Inicio</span></a></li>
-            <li><a href="#products" class="nav-products"><i class="fas fa-gamepad"></i> <span>Produtos</span></a></li>
-            <li><a href="#"><i class="fas fa-question-circle"></i> <span>Ajuda</span></a></li>
-            <li><a href="#support" class="nav-support"><i class="fas fa-headset"></i> <span>Suporte</span></a></li>
+
+            <li>
+
+                <a href="#" class="active">
+
+                    <i class="fas fa-house"></i>
+                    <span>Início</span>
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="#products">
+
+                    <i class="fas fa-shirt"></i>
+                    <span>Coleção</span>
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="#">
+
+                    <i class="fas fa-fire"></i>
+                    <span>Tendências</span>
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="#support">
+
+                    <i class="fas fa-headset"></i>
+                    <span>Suporte</span>
+
+                </a>
+
+            </li>
+
         </ul>
+
     </nav>
 
+    <!-- SCRIPT -->
+
     <script>
-        // Simple JavaScript for interactive elements
-        document.addEventListener('DOMContentLoaded', function() {
-            // Navigation active state
-            const navLinks = document.querySelectorAll('nav a');
-            navLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    navLinks.forEach(l => l.classList.remove('active'));
-                    this.classList.add('active');
+
+        // ACTIVE NAV
+
+        const navLinks = document.querySelectorAll("nav a");
+
+        navLinks.forEach(link => {
+
+            link.addEventListener("click", function () {
+
+                navLinks.forEach(item => {
+                    item.classList.remove("active");
                 });
+
+                this.classList.add("active");
+
             });
-            
-            // Smooth scrolling for anchor links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href');
-                    if (targetId === '#') return;
-                    
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 80,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-            
-            // Animation on scroll
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.1
-            };
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = 1;
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, observerOptions);
-            
-            // Observe feature cards for animation
-            document.querySelectorAll('.feature-card, .product-card, .support-card').forEach(card => {
-                card.style.opacity = 0;
-                card.style.transform = 'translateY(20px)';
-                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-                observer.observe(card);
-            });
-            
-            // Product buttons effect
-            document.querySelectorAll('.product-button').forEach(button => {
-                button.addEventListener('click', function() {
-                    this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processando...';
-                    setTimeout(() => {
-                        this.innerHTML = '<i class="fas fa-check"></i> Adicionado ao Carrinho!';
-                        this.style.background = 'linear-gradient(135deg, var(--success) 0%, #00E6A8 100%)';
-                    }, 1000);
-                });
-            });
-            
-            // Add specific event listener for products navigation
-            document.querySelector('a[href="#products"]').addEventListener('click', function(e) {
-                e.preventDefault();
-                const productsSection = document.getElementById('products');
-                if (productsSection) {
-                    window.scrollTo({
-                        top: productsSection.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-            
-            // Add specific event listener for support navigation
-            document.querySelector('a[href="#support"]').addEventListener('click', function(e) {
-                e.preventDefault();
-                const supportSection = document.getElementById('support');
-                if (supportSection) {
-                    window.scrollTo({
-                        top: supportSection.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
+
         });
+
+        // BUTTON EFFECT
+
+        const productButtons =
+            document.querySelectorAll(".product-button");
+
+        productButtons.forEach(button => {
+
+            button.addEventListener("click", function () {
+
+                const originalText = this.innerHTML;
+
+                this.innerHTML =
+                    '<i class="fas fa-spinner fa-spin"></i> Processando';
+
+                setTimeout(() => {
+
+                    this.innerHTML =
+                        '<i class="fas fa-check"></i> Adicionado';
+
+                    setTimeout(() => {
+
+                        this.innerHTML = originalText;
+
+                    }, 2000);
+
+                }, 1200);
+
+            });
+
+        });
+
     </script>
+
 </body>
+
 </html>
