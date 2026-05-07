@@ -85,6 +85,7 @@
 
         .desktop-nav {
             display: flex;
+            align-items: center;
             gap: 30px;
         }
 
@@ -99,6 +100,23 @@
             color: white;
         }
 
+        .header-whatsapp {
+            background: #25D366;
+            color: white !important;
+            padding: 10px 18px;
+            border-radius: 40px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: .3s;
+            font-weight: 600;
+        }
+
+        .header-whatsapp:hover {
+            background: #1ebe5d;
+            transform: translateY(-3px);
+        }
+
         /* HERO */
 
         .hero {
@@ -111,7 +129,7 @@
             background:
                 linear-gradient(rgba(17, 17, 17, 0.82),
                     rgba(17, 17, 17, 0.92)),
-                url("https://images.unsplash.com/photo-1523398002811-999ca8dec234?q=80&w=1470&auto=format&fit=crop");
+                url("https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?q=80&w=1470&auto=format&fit=crop");
 
             background-size: cover;
             background-position: center;
@@ -205,7 +223,7 @@
             margin-bottom: 70px;
         }
 
-        /* FEATURES */
+        /* GRID */
 
         .features-grid,
         .products-grid,
@@ -333,7 +351,7 @@
             background: #444;
         }
 
-        /* FOOTER NAV */
+        /* NAV */
 
         nav {
             position: fixed;
@@ -441,6 +459,15 @@
                 <a href="#products">Coleção</a>
                 <a href="#support">Suporte</a>
 
+                <a href="https://wa.me/5511999999999"
+                    target="_blank"
+                    class="header-whatsapp">
+
+                    <i class="fab fa-whatsapp"></i>
+                    WhatsApp
+
+                </a>
+
             </div>
 
         </div>
@@ -454,16 +481,16 @@
         <div class="hero-content">
 
             <h1>
-                Moda urbana premium para quem vive o estilo.
+                O puro suco do drip.
             </h1>
 
             <p>
                 A <span class="highlight">MULTILYNE - MTL</span>
-                traz roupas exclusivas, peças streetwear e coleções modernas
-                para elevar seu visual.
-                Qualidade premium, estilo autêntico e
+                traz roupas exclusivas incluindo camisas
+                e peças da moda como:
                 <span class="highlight">
-                    atitude em cada detalhe.
+                    camisas de time, camisas polo,
+                    moletons, kits e muito mais.
                 </span>
             </p>
 
@@ -479,9 +506,13 @@
                     Coleções
                 </a>
 
-                <a href="#support" class="btn btn-accent">
-                    <i class="fas fa-headset"></i>
-                    Suporte
+                <a href="https://wa.me/5511999999999"
+                    target="_blank"
+                    class="btn btn-accent">
+
+                    <i class="fab fa-whatsapp"></i>
+                    Chamar no Whats
+
                 </a>
 
             </div>
@@ -511,8 +542,8 @@
                 </h3>
 
                 <p class="feature-description">
-                    Peças modernas e autênticas para destacar seu visual
-                    em qualquer ocasião.
+                    Peças modernas e autênticas
+                    para destacar seu visual.
                 </p>
 
             </div>
@@ -537,22 +568,6 @@
             <div class="card">
 
                 <div class="feature-icon">
-                    <i class="fas fa-truck-fast"></i>
-                </div>
-
-                <h3 class="feature-title">
-                    Entrega Rápida
-                </h3>
-
-                <p class="feature-description">
-                    Enviamos para todo o Brasil com rapidez e segurança.
-                </p>
-
-            </div>
-
-            <div class="card">
-
-                <div class="feature-icon">
                     <i class="fas fa-headset"></i>
                 </div>
 
@@ -561,8 +576,8 @@
                 </h3>
 
                 <p class="feature-description">
-                    Nossa equipe está pronta para ajudar você antes
-                    e depois da compra.
+                    Atendimento direto pelo WhatsApp
+                    para tirar dúvidas e escolher seu pedido.
                 </p>
 
             </div>
@@ -616,7 +631,7 @@
 
                     <li>
                         <i class="fas fa-check-circle"></i>
-                        Frete rápido
+                        Estilo streetwear
                     </li>
 
                 </ul>
@@ -680,11 +695,11 @@
                 <div class="product-header">
 
                     <h3 class="product-title">
-                        Calça Cargo Street
+                        Kit Streetwear
                     </h3>
 
                     <div class="product-price">
-                        R$ 189,90
+                        R$ 219,90
                     </div>
 
                 </div>
@@ -693,22 +708,17 @@
 
                     <li>
                         <i class="fas fa-check-circle"></i>
-                        Estilo urbano
+                        Camisa premium
                     </li>
 
                     <li>
                         <i class="fas fa-check-circle"></i>
-                        Bolsos utilitários
+                        Bermuda exclusiva
                     </li>
 
                     <li>
                         <i class="fas fa-check-circle"></i>
                         Ajuste confortável
-                    </li>
-
-                    <li>
-                        <i class="fas fa-check-circle"></i>
-                        Material resistente
                     </li>
 
                     <li>
@@ -756,8 +766,9 @@
                 </h3>
 
                 <p class="support-description">
-                    Atendimento rápido para dúvidas,
-                    pedidos e suporte pós-venda.
+                    Chame nossa equipe no WhatsApp
+                    para escolher suas peças,
+                    fazer pedidos e tirar dúvidas.
                 </p>
 
                 <a href="https://wa.me/5511999999999"
@@ -863,76 +874,4 @@
 
             </li>
 
-            <li>
-
-                <a href="#support">
-
-                    <i class="fas fa-headset"></i>
-                    <span>Suporte</span>
-
-                </a>
-
-            </li>
-
-        </ul>
-
-    </nav>
-
-    <!-- SCRIPT -->
-
-    <script>
-
-        // ACTIVE NAV
-
-        const navLinks = document.querySelectorAll("nav a");
-
-        navLinks.forEach(link => {
-
-            link.addEventListener("click", function () {
-
-                navLinks.forEach(item => {
-                    item.classList.remove("active");
-                });
-
-                this.classList.add("active");
-
-            });
-
-        });
-
-        // BUTTON EFFECT
-
-        const productButtons =
-            document.querySelectorAll(".product-button");
-
-        productButtons.forEach(button => {
-
-            button.addEventListener("click", function () {
-
-                const originalText = this.innerHTML;
-
-                this.innerHTML =
-                    '<i class="fas fa-spinner fa-spin"></i> Processando';
-
-                setTimeout(() => {
-
-                    this.innerHTML =
-                        '<i class="fas fa-check"></i> Adicionado';
-
-                    setTimeout(() => {
-
-                        this.innerHTML = originalText;
-
-                    }, 2000);
-
-                }, 1200);
-
-            });
-
-        });
-
-    </script>
-
-</body>
-
-</html>
+ 
