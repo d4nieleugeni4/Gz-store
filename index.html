@@ -36,6 +36,10 @@
             padding-bottom: 90px;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         /* SCROLL */
 
         ::-webkit-scrollbar {
@@ -129,10 +133,11 @@
             background:
                 linear-gradient(rgba(17, 17, 17, 0.82),
                     rgba(17, 17, 17, 0.92)),
-                url("https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?q=80&w=1470&auto=format&fit=crop");
+                url("https://images.unsplash.com/photo-1523398002811-999ca8dec234?q=80&w=1470&auto=format&fit=crop");
 
             background-size: cover;
             background-position: center;
+            background-attachment: fixed;
         }
 
         .hero-content {
@@ -351,6 +356,31 @@
             background: #444;
         }
 
+        /* BOTÃO TOPO */
+
+        #backToTop {
+            position: fixed;
+            bottom: 110px;
+            right: 25px;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            border: none;
+            background: var(--primary);
+            color: var(--dark);
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: none;
+            z-index: 999;
+            transition: .3s;
+            box-shadow: 0 0 20px rgba(255,255,255,0.15);
+        }
+
+        #backToTop:hover {
+            transform: translateY(-5px);
+            background: white;
+        }
+
         /* NAV */
 
         nav {
@@ -390,8 +420,6 @@
             font-size: 1.3rem;
         }
 
-        /* ANIMATION */
-
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -403,8 +431,6 @@
                 transform: translateY(0);
             }
         }
-
-        /* RESPONSIVE */
 
         @media(max-width: 900px) {
             .hero h1 {
@@ -443,8 +469,6 @@
 
 <body>
 
-    <!-- HEADER -->
-
     <header>
 
         <div class="header-container">
@@ -473,8 +497,6 @@
         </div>
 
     </header>
-
-    <!-- HERO -->
 
     <section class="hero">
 
@@ -520,8 +542,6 @@
         </div>
 
     </section>
-
-    <!-- FEATURES -->
 
     <section class="features">
 
@@ -586,8 +606,6 @@
 
     </section>
 
-    <!-- PRODUCTS -->
-
     <section class="products" id="products">
 
         <h2 class="section-title">
@@ -595,8 +613,6 @@
         </h2>
 
         <div class="products-grid">
-
-            <!-- PRODUCT 1 -->
 
             <div class="card">
 
@@ -642,8 +658,6 @@
 
             </div>
 
-            <!-- PRODUCT 2 -->
-
             <div class="card">
 
                 <div class="product-header">
@@ -687,8 +701,6 @@
                 </button>
 
             </div>
-
-            <!-- PRODUCT 3 -->
 
             <div class="card">
 
@@ -736,16 +748,7 @@
 
         </div>
 
-        <a href="#" class="btn btn-secondary btn-more">
-
-            <i class="fas fa-eye"></i>
-            Ver Coleção Completa
-
-        </a>
-
     </section>
-
-    <!-- SUPPORT -->
 
     <section class="support" id="support">
 
@@ -781,61 +784,13 @@
 
             </div>
 
-            <div class="card">
-
-                <div class="support-icon">
-                    <i class="fab fa-instagram"></i>
-                </div>
-
-                <h3 class="support-title">
-                    Instagram
-                </h3>
-
-                <p class="support-description">
-                    Acompanhe lançamentos,
-                    novidades e tendências da MTL.
-                </p>
-
-                <a href="#"
-                    class="support-button">
-
-                    <i class="fab fa-instagram"></i>
-                    Seguir
-
-                </a>
-
-            </div>
-
-            <div class="card">
-
-                <div class="support-icon">
-                    <i class="fas fa-envelope"></i>
-                </div>
-
-                <h3 class="support-title">
-                    E-mail
-                </h3>
-
-                <p class="support-description">
-                    Entre em contato para suporte,
-                    parcerias e atendimento especializado.
-                </p>
-
-                <a href="mailto:contato@multilyne.com"
-                    class="support-button">
-
-                    <i class="fas fa-envelope"></i>
-                    Enviar E-mail
-
-                </a>
-
-            </div>
-
         </div>
 
     </section>
 
-    <!-- MOBILE NAV -->
+    <button id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
     <nav>
 
@@ -865,13 +820,100 @@
 
             <li>
 
-                <a href="#">
+                <a href="#support">
 
-                    <i class="fas fa-fire"></i>
-                    <span>Tendências</span>
+                    <i class="fas fa-headset"></i>
+                    <span>Suporte</span>
 
                 </a>
 
             </li>
 
- 
+            <li>
+
+                <a href="https://wa.me/5511999999999">
+
+                    <i class="fab fa-whatsapp"></i>
+                    <span>Whats</span>
+
+                </a>
+
+            </li>
+
+        </ul>
+
+    </nav>
+
+    <script>
+
+        const navLinks = document.querySelectorAll("nav a");
+
+        navLinks.forEach(link => {
+
+            link.addEventListener("click", function () {
+
+                navLinks.forEach(item => {
+                    item.classList.remove("active");
+                });
+
+                this.classList.add("active");
+
+            });
+
+        });
+
+        const productButtons =
+            document.querySelectorAll(".product-button");
+
+        productButtons.forEach(button => {
+
+            button.addEventListener("click", function () {
+
+                const originalText = this.innerHTML;
+
+                this.innerHTML =
+                    '<i class="fas fa-spinner fa-spin"></i> Processando';
+
+                setTimeout(() => {
+
+                    this.innerHTML =
+                        '<i class="fas fa-check"></i> Adicionado';
+
+                    setTimeout(() => {
+
+                        this.innerHTML = originalText;
+
+                    }, 2000);
+
+                }, 1200);
+
+            });
+
+        });
+
+        const backToTop = document.getElementById("backToTop");
+
+        window.addEventListener("scroll", () => {
+
+            if (window.scrollY > 400) {
+                backToTop.style.display = "block";
+            } else {
+                backToTop.style.display = "none";
+            }
+
+        });
+
+        backToTop.addEventListener("click", () => {
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        });
+
+    </script>
+
+</body>
+
+</html>
