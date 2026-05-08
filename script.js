@@ -19,13 +19,13 @@ navLinks.forEach(link => {
 // BOTÃO TOPO
 
 const backToTop =
-    document.getElementById("backToTop");
+document.getElementById("backToTop");
 
 window.addEventListener("scroll", () => {
 
-    if (window.scrollY > 400) {
+    if(window.scrollY > 300){
 
-        backToTop.style.display = "block";
+        backToTop.style.display = "flex";
 
     } else {
 
