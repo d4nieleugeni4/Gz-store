@@ -1,474 +1,23 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>MULTILYNE - MTL</title>
 
+    <link rel="stylesheet" href="style.css">
+
     <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <style>
-        :root {
-            --primary: #b5b5b5;
-            --secondary: #d9d9d9;
-            --dark: #111111;
-            --light: #f5f5f5;
-            --accent: #7a7a7a;
-            --card: #1b1b1b;
-            --border: rgba(255, 255, 255, 0.06);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "Poppins", sans-serif;
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background: var(--dark);
-            color: var(--light);
-            overflow-x: hidden;
-            padding-bottom: 90px;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* SCROLL */
-
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #151515;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--primary);
-            border-radius: 20px;
-        }
-
-        /* HEADER */
-
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 999;
-            background: rgba(17, 17, 17, 0.92);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .header-container {
-            max-width: 1300px;
-            margin: auto;
-            padding: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .logo {
-            font-size: 2rem;
-            font-weight: 800;
-            color: var(--light);
-            letter-spacing: 3px;
-        }
-
-        .logo span {
-            color: var(--primary);
-        }
-
-        .desktop-nav {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-        }
-
-        .desktop-nav a {
-            color: #d0d0d0;
-            text-decoration: none;
-            transition: .3s;
-            font-weight: 500;
-        }
-
-        .desktop-nav a:hover {
-            color: white;
-        }
-
-        .header-whatsapp {
-            background: #25D366;
-            color: white !important;
-            padding: 10px 18px;
-            border-radius: 40px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: .3s;
-            font-weight: 600;
-        }
-
-        .header-whatsapp:hover {
-            background: #1ebe5d;
-            transform: translateY(-3px);
-        }
-
-        /* HERO */
-
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 120px 20px 60px;
-
-            background:
-                linear-gradient(rgba(17, 17, 17, 0.82),
-                    rgba(17, 17, 17, 0.92)),
-                url("https://images.unsplash.com/photo-1523398002811-999ca8dec234?q=80&w=1470&auto=format&fit=crop");
-
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-        }
-
-        .hero-content {
-            max-width: 850px;
-            text-align: center;
-            animation: fadeIn 1s ease;
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            line-height: 1.1;
-            margin-bottom: 25px;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            color: #d2d2d2;
-            line-height: 1.8;
-            margin-bottom: 40px;
-        }
-
-        .highlight {
-            color: var(--primary);
-            font-weight: 700;
-        }
-
-        .cta-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 15px 28px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: .3s;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            min-width: 220px;
-        }
-
-        .btn-primary {
-            background: var(--primary);
-            color: var(--dark);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-5px);
-            background: white;
-        }
-
-        .btn-secondary {
-            border: 2px solid var(--secondary);
-            color: var(--secondary);
-        }
-
-        .btn-secondary:hover {
-            background: var(--secondary);
-            color: var(--dark);
-            transform: translateY(-5px);
-        }
-
-        .btn-accent {
-            border: 2px solid var(--accent);
-            color: var(--accent);
-        }
-
-        .btn-accent:hover {
-            background: var(--accent);
-            color: white;
-            transform: translateY(-5px);
-        }
-
-        /* SECTIONS */
-
-        section {
-            padding: 100px 20px;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.8rem;
-            margin-bottom: 70px;
-        }
-
-        /* GRID */
-
-        .features-grid,
-        .products-grid,
-        .support-grid {
-            max-width: 1250px;
-            margin: auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
-
-        .card {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 25px;
-            padding: 35px;
-            transition: .4s;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(255, 255, 255, 0.15);
-        }
-
-        .feature-icon,
-        .support-icon {
-            width: 90px;
-            height: 90px;
-            margin: auto auto 25px;
-            border-radius: 50%;
-            background: #252525;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.2rem;
-            color: var(--primary);
-        }
-
-        .feature-title,
-        .product-title,
-        .support-title {
-            text-align: center;
-            margin-bottom: 15px;
-            font-size: 1.5rem;
-        }
-
-        .feature-description,
-        .support-description {
-            text-align: center;
-            color: #cccccc;
-            line-height: 1.8;
-        }
-
-        /* PRODUCTS */
-
-        .product-header {
-            text-align: center;
-            margin-bottom: 25px;
-        }
-
-        .product-price {
-            color: var(--primary);
-            font-size: 2rem;
-            font-weight: 700;
-            margin-top: 10px;
-        }
-
-        .product-features {
-            list-style: none;
-            margin-bottom: 25px;
-        }
-
-        .product-features li {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 10px 0;
-            color: #d0d0d0;
-        }
-
-        .product-features i {
-            color: var(--primary);
-        }
-
-        .product-button {
-            width: 100%;
-            border: none;
-            padding: 15px;
-            border-radius: 14px;
-            background: var(--primary);
-            color: var(--dark);
-            font-weight: 700;
-            cursor: pointer;
-            transition: .3s;
-        }
-
-        .product-button:hover {
-            background: white;
-        }
-
-        .btn-more {
-            margin: 50px auto 0;
-            width: fit-content;
-            display: flex;
-        }
-
-        /* SUPPORT */
-
-        .support-button {
-            width: 100%;
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            margin-top: 25px;
-            padding: 14px;
-            border-radius: 14px;
-            background: #2c2c2c;
-            color: white;
-            text-decoration: none;
-            transition: .3s;
-        }
-
-        .support-button:hover {
-            background: #444;
-        }
-
-        /* BOTÃO TOPO */
-
-        #backToTop {
-            position: fixed;
-            bottom: 110px;
-            right: 25px;
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
-            border: none;
-            background: var(--primary);
-            color: var(--dark);
-            font-size: 1.2rem;
-            cursor: pointer;
-            display: none;
-            z-index: 999;
-            transition: .3s;
-            box-shadow: 0 0 20px rgba(255,255,255,0.15);
-        }
-
-        #backToTop:hover {
-            transform: translateY(-5px);
-            background: white;
-        }
-
-        /* NAV */
-
-        nav {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            z-index: 999;
-            background: rgba(17, 17, 17, 0.95);
-            backdrop-filter: blur(10px);
-            border-top: 1px solid var(--border);
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: space-around;
-            padding: 15px;
-        }
-
-        nav a {
-            color: #d0d0d0;
-            text-decoration: none;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 5px;
-            transition: .3s;
-            font-size: .9rem;
-        }
-
-        nav a:hover,
-        nav a.active {
-            color: white;
-        }
-
-        nav i {
-            font-size: 1.3rem;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(25px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @media(max-width: 900px) {
-            .hero h1 {
-                font-size: 3rem;
-            }
-        }
-
-        @media(max-width: 700px) {
-
-            .desktop-nav {
-                display: none;
-            }
-
-            .hero h1 {
-                font-size: 2.3rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
-
-            .btn {
-                width: 100%;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            nav span {
-                display: none;
-            }
-        }
-    </style>
 </head>
 
 <body>
+
+    <!-- HEADER -->
 
     <header>
 
@@ -499,6 +48,8 @@
 
     </header>
 
+    <!-- HERO -->
+
     <section class="hero">
 
         <div class="hero-content">
@@ -508,25 +59,36 @@
             </h1>
 
             <p>
+
                 A <span class="highlight">MULTILYNE - MTL</span>
                 traz roupas exclusivas incluindo camisas
                 e peças da moda como:
+
                 <span class="highlight">
-                    camisas de time, camisas polo,
-                    moletons, kits e muito mais.
+
+                    camisas de time,
+                    camisas polo,
+                    moletons,
+                    kits e muito mais.
+
                 </span>
+
             </p>
 
             <div class="cta-buttons">
 
                 <a href="#products" class="btn btn-primary">
+
                     <i class="fas fa-bag-shopping"></i>
                     Comprar Agora
+
                 </a>
 
                 <a href="#products" class="btn btn-secondary">
+
                     <i class="fas fa-shirt"></i>
                     Coleções
+
                 </a>
 
                 <a href="https://wa.me/5511999999999"
@@ -543,6 +105,8 @@
         </div>
 
     </section>
+
+    <!-- FEATURES -->
 
     <section class="features">
 
@@ -563,8 +127,10 @@
                 </h3>
 
                 <p class="feature-description">
+
                     Peças modernas e autênticas
                     para destacar seu visual.
+
                 </p>
 
             </div>
@@ -580,8 +146,10 @@
                 </h3>
 
                 <p class="feature-description">
+
                     Tecidos selecionados e acabamento impecável
                     em todas as peças.
+
                 </p>
 
             </div>
@@ -597,8 +165,10 @@
                 </h3>
 
                 <p class="feature-description">
+
                     Atendimento direto pelo WhatsApp
                     para tirar dúvidas e escolher seu pedido.
+
                 </p>
 
             </div>
@@ -606,6 +176,8 @@
         </div>
 
     </section>
+
+    <!-- PRODUCTS -->
 
     <section class="products" id="products">
 
@@ -617,9 +189,9 @@
 
             <div class="card">
 
-                <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?q=80&w=1200&auto=format&fit=crop"
-                    alt="Coleção streetwear"
-                    style="width:100%; border-radius:20px; margin-bottom:20px; height:320px; object-fit:cover;">
+                <img src="imagens/colecoes.jpg"
+                    alt="Coleção MTL"
+                    class="collection-image">
 
                 <div class="product-header">
 
@@ -658,9 +230,10 @@
                 </ul>
 
                 <a href="#"
-                    class="product-button"
-                    style="display:flex; align-items:center; justify-content:center; text-decoration:none;">
+                    class="product-button">
+
                     Ver Coleções
+
                 </a>
 
             </div>
@@ -668,6 +241,8 @@
         </div>
 
     </section>
+
+    <!-- SUPPORT -->
 
     <section class="support" id="support">
 
@@ -688,9 +263,11 @@
                 </h3>
 
                 <p class="support-description">
+
                     Chame nossa equipe no WhatsApp
                     para escolher suas peças,
                     fazer pedidos e tirar dúvidas.
+
                 </p>
 
                 <a href="https://wa.me/5511999999999"
@@ -707,9 +284,38 @@
 
     </section>
 
+    <!-- BOTÃO TOPO -->
+
     <button id="backToTop">
+
         <i class="fas fa-arrow-up"></i>
+
     </button>
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <h3>
+            MULTILYNE - MTL
+        </h3>
+
+        <p>
+            O puro suco do drip.
+        </p>
+
+        <a href="https://instagram.com/multilyne"
+            target="_blank"
+            class="instagram-button">
+
+            <i class="fab fa-instagram"></i>
+            @multilyne
+
+        </a>
+
+    </footer>
+
+    <!-- NAV -->
 
     <nav>
 
@@ -763,106 +369,8 @@
 
     </nav>
 
-    <script>
-
-        const navLinks = document.querySelectorAll("nav a");
-
-        navLinks.forEach(link => {
-
-            link.addEventListener("click", function () {
-
-                navLinks.forEach(item => {
-                    item.classList.remove("active");
-                });
-
-                this.classList.add("active");
-
-            });
-
-        });
-
-        const productButtons =
-            document.querySelectorAll(".product-button");
-
-        productButtons.forEach(button => {
-
-            button.addEventListener("click", function () {
-
-                const originalText = this.innerHTML;
-
-                this.innerHTML =
-                    '<i class="fas fa-spinner fa-spin"></i> Processando';
-
-                setTimeout(() => {
-
-                    this.innerHTML =
-                        '<i class="fas fa-check"></i> Adicionado';
-
-                    setTimeout(() => {
-
-                        this.innerHTML = originalText;
-
-                    }, 2000);
-
-                }, 1200);
-
-            });
-
-        });
-
-        const backToTop = document.getElementById("backToTop");
-
-        window.addEventListener("scroll", () => {
-
-            if (window.scrollY > 400) {
-                backToTop.style.display = "block";
-            } else {
-                backToTop.style.display = "none";
-            }
-
-        });
-
-        backToTop.addEventListener("click", () => {
-
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
-
-        });
-
-    </script>
-
-    <footer style="padding:40px 20px; text-align:center; border-top:1px solid rgba(255,255,255,0.08); background:#0d0d0d;">
-
-        <h3 style="margin-bottom:15px; font-size:1.6rem;">
-            MULTILYNE - MTL
-        </h3>
-
-        <p style="color:#bdbdbd; margin-bottom:20px;">
-            O puro suco do drip.
-        </p>
-
-        <a href="https://instagram.com/multilyne"
-            target="_blank"
-            style="display:inline-flex;
-            align-items:center;
-            gap:10px;
-            background:#1f1f1f;
-            color:white;
-            padding:14px 24px;
-            border-radius:50px;
-            text-decoration:none;
-            transition:.3s;">
-
-            <i class="fab fa-instagram"></i>
-            @multilyne
-
-        </a>
-
-    </footer>
+    <script src="script.js"></script>
 
 </body>
 
 </html>
-
