@@ -76,6 +76,13 @@ header {
     color: white;
     text-decoration: none;
     font-size: 1rem;
+    transition: opacity 0.3s;
+
+}
+
+.desktop-nav a:hover {
+
+    opacity: 0.7;
 
 }
 
@@ -163,6 +170,7 @@ header {
     gap: 10px;
 
     font-weight: bold;
+    transition: all 0.3s ease;
 
 }
 
@@ -171,6 +179,20 @@ header {
     background: white;
     color: black;
     border: none;
+
+}
+
+.btn-primary:hover {
+
+    background: #e0e0e0;
+    transform: scale(1.05);
+
+}
+
+.btn-secondary:hover {
+
+    background: rgba(255,255,255,0.1);
+    transform: scale(1.05);
 
 }
 
@@ -207,6 +229,14 @@ section {
     border: 1px solid var(--border);
     border-radius: 25px;
     padding: 35px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+}
+
+.card:hover {
+
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 
 }
 
@@ -281,6 +311,14 @@ section {
     padding: 12px 0;
     display: flex;
     gap: 10px;
+    align-items: center;
+
+}
+
+.product-features i {
+
+    color: #a5a5a5;
+    font-size: 1.1rem;
 
 }
 
@@ -298,6 +336,7 @@ section {
     gap: 10px;
 
     font-weight: bold;
+    transition: all 0.3s ease;
 
 }
 
@@ -308,10 +347,24 @@ section {
 
 }
 
+.product-button:hover {
+
+    background: #e0e0e0;
+    transform: scale(1.02);
+
+}
+
 .support-button {
 
     background: #2c2c2c;
     color: white;
+
+}
+
+.support-button:hover {
+
+    background: #3a3a3a;
+    transform: scale(1.02);
 
 }
 
@@ -337,6 +390,14 @@ footer {
     text-decoration: none;
     background: #1f1f1f;
     color: white;
+    transition: all 0.3s ease;
+
+}
+
+.instagram-button:hover {
+
+    background: #2a2a2a;
+    transform: scale(1.05);
 
 }
 
@@ -348,6 +409,7 @@ nav {
     background: rgba(0,0,0,.95);
     border-top: 1px solid var(--border);
     backdrop-filter: blur(10px);
+    z-index: 999;
 
 }
 
@@ -371,6 +433,13 @@ nav a {
     gap: 6px;
 
     font-size: .9rem;
+    transition: opacity 0.3s;
+
+}
+
+nav a:hover {
+
+    opacity: 0.7;
 
 }
 
@@ -391,12 +460,27 @@ nav a {
 
     cursor: pointer;
 
-    display: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
     z-index: 999;
+
+    font-size: 1.2rem;
 
 }
 
-/* RESPONSIVO */
+#backToTop:hover {
+
+    transform: scale(1.1);
+    background: #e0e0e0;
+
+}
+
+/* RESPONSIVO CELULARES PEQUENOS */
 
 @media(max-width: 900px){
 
@@ -425,46 +509,222 @@ nav a {
 
 @media(max-width: 600px){
 
+    body {
+
+        padding-bottom: 80px;
+
+    }
+
     .logo{
 
-        font-size: 1.8rem;
+        font-size: 1.5rem;
         text-align: center;
 
     }
 
     .desktop-nav{
 
-        font-size: .9rem;
+        font-size: .85rem;
+        gap: 15px;
+
+    }
+
+    .desktop-nav a {
+
+        font-size: 0.85rem;
 
     }
 
     .hero{
 
         padding-top: 180px;
+        padding-left: 15px;
+        padding-right: 15px;
 
     }
 
     .hero h1{
 
-        font-size: 3.4rem;
+        font-size: 2.5rem;
 
     }
 
     .hero p{
 
-        font-size: 1rem;
+        font-size: 0.95rem;
+        line-height: 1.5;
 
     }
 
     .section-title{
 
-        font-size: 2.2rem;
+        font-size: 2rem;
+        margin-bottom: 40px;
 
     }
 
     .btn{
 
         min-width: 100%;
+        padding: 14px 20px;
+        font-size: 0.9rem;
+
+    }
+
+    .card {
+
+        padding: 25px;
+
+    }
+
+    .feature-icon,
+    .support-icon {
+
+        width: 70px;
+        height: 70px;
+        font-size: 1.6rem;
+
+    }
+
+    .feature-title,
+    .support-title,
+    .product-title {
+
+        font-size: 1.3rem;
+
+    }
+
+    .feature-description,
+    .support-description {
+
+        font-size: 0.9rem;
+
+    }
+
+    .collection-image {
+
+        height: 250px;
+
+    }
+
+    .product-features li {
+
+        font-size: 0.9rem;
+        padding: 10px 0;
+
+    }
+
+    .product-button,
+    .support-button {
+
+        padding: 12px;
+        font-size: 0.9rem;
+
+    }
+
+    footer {
+
+        padding: 40px 15px;
+
+    }
+
+    footer h3 {
+
+        font-size: 1.3rem;
+
+    }
+
+    footer p {
+
+        font-size: 0.9rem;
+
+    }
+
+    .instagram-button {
+
+        padding: 12px 20px;
+        font-size: 0.85rem;
+
+    }
+
+    nav ul {
+
+        padding: 12px;
+
+    }
+
+    nav a {
+
+        font-size: 0.75rem;
+
+    }
+
+    nav a i {
+
+        font-size: 1.2rem;
+
+    }
+
+    #backToTop {
+
+        width: 45px;
+        height: 45px;
+        bottom: 90px;
+        right: 15px;
+        font-size: 1rem;
+
     }
 
 }
+
+@media(max-width: 380px){
+
+    .hero h1{
+
+        font-size: 2rem;
+
+    }
+
+    .hero p{
+
+        font-size: 0.85rem;
+
+    }
+
+    .section-title{
+
+        font-size: 1.6rem;
+
+    }
+
+    .logo{
+
+        font-size: 1.3rem;
+
+    }
+
+    .desktop-nav{
+
+        gap: 12px;
+
+    }
+
+    .desktop-nav a {
+
+        font-size: 0.75rem;
+
+    }
+
+    .card {
+
+        padding: 20px;
+
+    }
+
+    .collection-image {
+
+        height: 200px;
+
+    }
+
+    }
